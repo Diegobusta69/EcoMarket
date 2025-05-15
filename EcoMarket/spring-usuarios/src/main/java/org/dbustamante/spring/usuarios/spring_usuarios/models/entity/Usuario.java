@@ -1,29 +1,28 @@
 package org.dbustamante.spring.usuarios.spring_usuarios.models.entity;
 
 import jakarta.persistence.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "usuarios")
-@Schema(description = "Entidad que representa a un usuario del sistema")
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Schema(description = "Identificador único del usuario", example = "1", accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
 
-    @Schema(description = "Nombre completo del usuario", example = "Fernando Sierra")
     @NotBlank
     private String nombre;
 
     @Column(unique = true)
     @Email
     @NotBlank
-    @Schema(description = "Correo electrónico único del usuario", example = "fernando@example.com")
 
     private String email;
 
-    @Schema(description = "Contraseña del usuario", example = "123456", writeOnly = true)
     @NotBlank
     private String password;
 
