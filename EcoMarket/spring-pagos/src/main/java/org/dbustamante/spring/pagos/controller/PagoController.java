@@ -1,7 +1,6 @@
 package org.dbustamante.spring.pagos.controller;
 
 
-import jakarta.validation.Valid;
 import org.dbustamante.spring.pagos.models.Pago;
 import org.dbustamante.spring.pagos.services.PagoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
+
+
 
 @RestController
 @RequestMapping("/api/pagos")
@@ -31,12 +32,12 @@ public class PagoController {
     }
 
     @PostMapping
-    public ResponseEntity<Pago> crear(@Valid @RequestBody Pago pago) {
+    public ResponseEntity<Pago> crear(@RequestBody Pago pago) {
         return ResponseEntity.ok(service.guardar(pago));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Pago> editar(@PathVariable Long id, @Valid @RequestBody Pago pago) {
+    public ResponseEntity<Pago> editar(@PathVariable Long id, @RequestBody Pago pago) {
         return service.porId(id).map(p -> {
             p.setMetodoPago(pago.getMetodoPago());
             p.setMonto(pago.getMonto());
@@ -45,4 +46,12 @@ public class PagoController {
         }).orElse(ResponseEntity.notFound().build());
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> eliminar(@PathVariable Long id) {
+        return service.porId(id).map(pago -> {
+            service.eliminar(id);
+            // Aquí retornamos explícitamente ResponseEntity<Void>
+            return ResponseEntity.<Void>noContent().build();
+        }).orElse(ResponseEntity.notFound().build());
+    }
 }
