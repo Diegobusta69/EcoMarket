@@ -1,6 +1,5 @@
 package org.dbustamante.spring.usuarios.spring_usuarios.services;
 
-
 import org.dbustamante.spring.usuarios.spring_usuarios.models.entity.Usuario;
 import org.dbustamante.spring.usuarios.spring_usuarios.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +10,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UsuarioServiceImpl {
+public class UsuarioServiceImpl implements UsuarioService {
+
     @Autowired
     private UsuarioRepository repository;
 
     @Override
-    @Transactional (readOnly = true)
+    @Transactional(readOnly = true)
     public List<Usuario> listar() {
         return (List<Usuario>) repository.findAll();
     }

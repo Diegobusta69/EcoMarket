@@ -1,4 +1,4 @@
-package org.dbustamante.spring.usuarios.spring_usuarios.config;
+package org.dbustamante.spring.pagos.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -12,10 +12,8 @@ public class SwaggerConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("API de Usuarios")
+                        .title("API de Pagos")
                         .version("1.0")
-                        .description("Documentación del microservicio de usuarios"));
+                        .description("Documentación del microservicio de pagos"));
     }
 }
-
-

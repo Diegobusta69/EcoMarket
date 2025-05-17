@@ -1,5 +1,6 @@
 package org.dbustamante.spring.usuarios.spring_usuarios.controller;
 
+import jakarta.validation.Valid;
 import org.dbustamante.spring.usuarios.spring_usuarios.models.entity.Usuario;
 import org.dbustamante.spring.usuarios.spring_usuarios.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
+@RequestMapping("/api/usuarios")
 @RestController
 public class UsuarioController {
     @Autowired
